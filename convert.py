@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 from string import printable
-import sys
+import sys, locale
 
 if __name__ == '__main__':
     from argparse import ArgumentParser
@@ -11,7 +11,8 @@ if __name__ == '__main__':
     parser.add_argument('source',help='IPA symbols to convert to SAMPA.')
     args = parser.parse_args(sys.argv[1:])
     config = args.config
-    source = args.source.decode('utf-8')
+    source = args.source.decode(locale.getpreferredencoding())
+    print(source)
 
     config = open(config,'r')
     table = {}
@@ -26,6 +27,6 @@ if __name__ == '__main__':
     out = []
     for c in source:
         if c in table: c = table[c]
-        if c not in printable: c = ''
+        elif c not in printable: c = ''
         out.append(c)
-    print(''.join(out).encode('utf-8'))
+    print(''.join(out))
