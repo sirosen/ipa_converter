@@ -6,9 +6,9 @@ import sys, locale
 
 if __name__ == '__main__':
     from argparse import ArgumentParser
-    parser = ArgumentParser(description='Converts IPA input to SAMPA output. Does not handle certain cases: nasals, tones, syllabic consonants, and non-SAMPA representable phonetic symbols. Writes to stdout.')
-    parser.add_argument('-c','--config',help='Name of the configuration table. Defaults to "table.cfg" in the working directory.',default='table.cfg')
-    parser.add_argument('source',help='IPA symbols to convert to SAMPA.')
+    parser = ArgumentParser(description='Converts IPA input to ASCII output. Does not handle certain cases: nasals, tones, syllabic consonants, and non-SAMPA representable phonetic symbols. Writes to stdout.')
+    parser.add_argument('-c','--config',help='Name of the configuration table. Defaults to "sampa.cfg" in the working directory.',default='sampa.cfg')
+    parser.add_argument('source',help='IPA symbols to convert.')
     args = parser.parse_args(sys.argv[1:])
     config = args.config
     source = args.source.decode(locale.getpreferredencoding())
